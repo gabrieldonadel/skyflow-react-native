@@ -7,25 +7,22 @@ VERSION="$2"
 MARKER_START="<!-- SKYFLOW-BETA-DISCLAIMER:START -->"
 MARKER_END="<!-- SKYFLOW-BETA-DISCLAIMER:END -->"
 
+BANNER_TEXT="> ⚠️ **Beta release — not for production use.** This is a pre-release build provided for early testing and feedback. It has not completed Skyflow's General Availability (GA) validation, its API may change before the stable release, and it is not covered by production SLAs or support commitments. Do not deploy beta builds to production environments."
+
 TEMP_FILE=$(mktemp)
 trap "rm -f $TEMP_FILE" EXIT
 
-if [[ "$VERSION" =~ beta|dev ]]; then
+if [[ "$VERSION" =~ -beta\.[0-9]+ ]]; then
   # Insert banner if not already present
   if ! grep -qF "$MARKER_START" "$README_PATH"; then
     # Find the first heading and insert banner after it
-    awk '
+    awk -v marker_start="$MARKER_START" -v marker_end="$MARKER_END" -v banner_text="$BANNER_TEXT" '
       NR == 1 && /^#/ {
         print $0
         print ""
-        print "<!-- SKYFLOW-BETA-DISCLAIMER:START -->"
-        print ""
-        print "> **Warning:** This is a **beta/pre-release** build of the Skyflow JavaScript/TypeScript SDK."
-        print "> It is **not recommended for production use** and is provided for testing and evaluation only."
-        print "> Features, APIs, and behavior may change without notice."
-        print "> Use at your own risk, and report issues to the Skyflow team."
-        print ""
-        print "<!-- SKYFLOW-BETA-DISCLAIMER:END -->"
+        print marker_start
+        print banner_text
+        print marker_end
         print ""
         next
       }

@@ -553,7 +553,7 @@ export default App;
             'table': 'cards',
             'fields': {
                'card_number': 'f3907186-e7e2-466f-91e5-48e12c2bcbc1',
-               'first_name':  '89024714-6a26-4256-b9d4-55ad69aa4047'
+               'first_name':  '<TOKEN_ID_2>'
             }
         }
     ]
@@ -1773,7 +1773,7 @@ const App = () => {
   return (
     <View>
       <RevealElement
-        token={'b63ec4e0-bbad-4e43-96e6-6bd50f483f75'}
+        token={'<TOKEN_ID_1>'}
         container={revealContainer}
         label='Card Number'
         altText='XXXX XXXX XXXX XXXX'
@@ -1783,7 +1783,7 @@ const App = () => {
         redaction={RedactionType.PLAIN_TEXT}
       />
       <RevealElement
-        token={'89024714-6a26-4256-b9d4-55ad69aa4047'}
+        token={'<TOKEN_ID_2>'}
         container={revealContainer}
         label='SSN'
         altText='XXX-XX-XXXX'
@@ -1832,16 +1832,16 @@ export default App;
 {
   "success": [
     {
-      "token": "b63ec4e0-bbad-4e43-96e6-6bd50f483f75",
+      "token": "<TOKEN_ID_1>",
       "valueType": "STRING"
     }
   ],
   "errors": [
     {
-      "token": "89024714-6a26-4256-b9d4-55ad69aa4047",
+      "token": "<TOKEN_ID_2>",
       "error": {
         "code": 404,
-        "description": "Tokens not found for 89024714-6a26-4256-b9d4-55ad69aa4047"
+        "description": "Tokens not found for <TOKEN_ID_2>"
       }
     }
   ]
